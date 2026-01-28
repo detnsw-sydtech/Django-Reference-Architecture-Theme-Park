@@ -1,6 +1,6 @@
-# 🎢 Theme Park Flask PWA Workbook (GitHub Codespaces)
+# 🎢 Theme Park Django PWA Workbook (GitHub Codespaces)
 
-This workbook guides students through setting up and developing the Theme Park Progressive Web App (PWA) using Flask inside GitHub Codespaces. By working in Codespaces, students don’t need to install Python or Flask locally — everything runs in the cloud.
+This workbook guides students through setting up and developing the Theme Park Progressive Web App (PWA) using Django inside GitHub Codespaces. By working in Codespaces, students don’t need to install Python or Django locally — everything runs in the cloud.
 
 ## Part A: Introduction
 
@@ -8,7 +8,7 @@ What is GitHub Codespaces?
 
 Cloud-based dev environment: Runs VS Code in the browser.
 
-No local setup needed: Python, Flask, and extensions are pre-installed.
+No local setup needed: Python, Django, and extensions are pre-installed.
 
 Reproducible: Same environment for every student.
 
@@ -68,21 +68,21 @@ OR
 uv pip install -r pyproject.toml
 ```
 
-### Step 2: Verify Flask
+### Step 2: Verify Django
 
 Run:
 ```bash
-python -m flask --version
+python -m Django --version
 ```
 
-Confirm Flask is installed.
+Confirm Django is installed.
 
-## Part D: Running the Flask App
+## Part D: Running the Django App
 
 ### Step 1: Start the App
 
 ```bash
-flask run --host=0.0.0.0 --port=5000
+Django run --host=0.0.0.0 --port=5000
 ```
 
 Step 2: Preview in Browser
@@ -98,7 +98,7 @@ You should see the Theme Park PWA homepage.
 ```tree
 /themepark-pwa
 │
-├── app.py              # Main Flask app
+├── app.py              # Main Django app
 ├── static/             # CSS, JS, images
 ├── templates/          # HTML templates (Jinja2)
 ├── requirements.txt    # Dependencies
@@ -128,7 +128,7 @@ Add route in app.py:
 def ride():
     return render_template("ride.html")
 ```
-Restart Flask and preview.
+Restart Django and preview.
 
 Example: Updating Navigation
 
@@ -157,7 +157,7 @@ Add link:
 ### Step 1: Prepare Procfile
 
 ```
-web: flask run --host=0.0.0.0 --port=$PORT
+web: Django run --host=0.0.0.0 --port=$PORT
 ```
 
 ### Step 2: Deploy to Heroku/Render
@@ -172,7 +172,7 @@ Visit live Theme Park PWA URL.
 
 Why is Codespaces useful for classroom projects?
 
-How does Flask separate logic (app.py) from presentation (templates/)?
+How does Django separate logic (app.py) from presentation (templates/)?
 
 What are the benefits of pinned versions in requirements.txt?
 
@@ -187,5 +187,6 @@ Store bookings in a SQLite database.
 Display all bookings on an admin page.
 
 
-This workbook ensures students can set up, run, and extend the Theme Park Flask PWA entirely in GitHub Codespaces, without needing a local environment.
+This workbook ensures students can set up, run, and extend the Theme Park Django PWA entirely in GitHub Codespaces, without needing a local environment.
+
 

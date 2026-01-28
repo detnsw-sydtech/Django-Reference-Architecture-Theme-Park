@@ -138,3 +138,49 @@ themepark-django-reference-architecture/
 │   └── ThemePark_PWA_Workbook.ipynb
 │
 └── manage.py
+```
+
+This layout is:
+
+- familiar to Django developers,
+- teachable for students,
+- friendly to SAST/DAST tools (clear separation of concerns, minimal ad‑hoc scripts).
+
+---
+## 5. Security-first design principles
+
+This reference architecture is built to model industrial-strength security suitable for automated scanning:
+
+- **Use of Django ORM** for all database access (avoiding raw SQL where possible).
+- **Strict separation** of settings:
+  - secrets and environment‑specific values loaded from environment variables,
+  - debug mode disabled in production.
+
+- **Secure defaults**:
+  - CSRF protection enabled,
+  - secure session cookies,
+  - XSS‑safe templates,
+  - input validation via forms and serializers.
+
+- Static analysis ready:
+  - consistent project structure,
+  - minimal dynamic code execution,
+  - clear boundaries between layers (views, models, templates).
+
+- Testing hooks:
+  - space for unit tests and integration tests,
+  - CI workflow that can be extended with SAST/DAST tools.
+
+Students can use this as a checklist when designing their own Major Project.
+
+---
+
+## 6. Getting started (with ```uv```)
+
+### 6.1. Install uv
+
+Follow the official uv installation instructions (on your local machine or inside Codespaces).
+
+### 6.2. Create and sync the environment
+
+

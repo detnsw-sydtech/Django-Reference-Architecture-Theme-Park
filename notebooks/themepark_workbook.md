@@ -66,6 +66,7 @@ OR
 
 ```bash
 uv pip install -r pyproject.toml
+```
 
 ### Step 2: Verify Flask
 
@@ -187,3 +188,4 @@ Display all bookings on an admin page.
 
 
 This workbook ensures students can set up, run, and extend the Theme Park Flask PWA entirely in GitHub Codespaces, without needing a local environment.
+

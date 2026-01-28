@@ -1,2 +1,140 @@
-# Django-Reference-Architecture-Theme-Park
-A canonical, security-first Django reference architecture for a Theme Park information system, designed for Years 10–12 students in the **NESA Software Engineering 11–12** and as a model for addressing the syllabus outcomes of the **Year 12 Major Project**
+# Theme Park Django Reference Architecture
+
+A canonical, security-first Django reference architecture for a Theme Park information system, designed for Years 10–12 students in the **Software Engineering 11–12** course (NSW Curriculum) and as a model for the **Year 12 Major Project**.
+
+This project demonstrates:
+
+- a realistic **relational database** for a Theme Park (customers, bookings, and related entities),
+- a **Django web application** with industrial-strength security practices,
+- modern Python packaging using **`pyproject.toml`** and **`uv`**,
+- a structure that can withstand **SAST** and **DAST** scanning at a high standard,
+- a clear link to **NESA Software Engineering 11–12 syllabus outcomes**, especially the **Software Engineering Project / Major Project** focus area. 
+
+---
+
+## 1. How this reference architecture supports the Major Project
+
+The **Software Engineering Project** (Major Project) requires students to:
+
+- **define and analyse requirements** of a problem (SE‑ID‑01),
+- **define data structures and data types**, including data dictionaries (SE‑ID‑01.04),
+- **design, implement, test, document, and maintain** a software solution over time,
+- apply **project management**, **collaboration**, and **version control** practices. 
+
+This repository is designed as a **worked example** that students can:
+
+- **study** to understand how a professional‑style project is structured,
+- **adapt** as a conceptual model when planning their own Major Project,
+- **compare** against their own work to check:
+  - Have I defined my entities and relationships clearly?
+  - Is my architecture modular and maintainable?
+  - Have I considered security, testing, and deployment?
+
+Teachers can use this repo as:
+
+- a **reference implementation** when giving feedback on student designs,
+- a **benchmark** for documentation, security considerations, and version control usage.
+
+---
+
+## 2. NESA syllabus links and outcomes
+
+This reference architecture is intentionally aligned with key outcomes from the **Software Engineering 11–12 Syllabus (2022)** and the **Software Engineering Project** resources. 
+
+It particularly supports:
+
+- **Requirements and design**
+  - Defining the problem and user needs.
+  - Creating **data dictionaries**, **ERDs**, and **database schemas**.
+- **Implementation**
+  - Using **Django** as a modern web framework.
+  - Applying **modular design** (apps, models, views, templates).
+  - Using **`pyproject.toml`** and **`uv`** for reproducible environments.
+- **Testing and quality**
+  - Structuring the project to support **automated tests**.
+  - Designing for **SAST/DAST‑friendly** analysis (clear boundaries, minimal “magic”).
+- **Security and ethics**
+  - Applying **security‑first** patterns (input validation, ORM use, CSRF protection, authentication/authorisation).
+  - Considering **social and ethical** implications of software systems.
+- **Project management and documentation**
+  - Using **GitHub** for version control and collaboration.
+  - Providing **clear documentation** (README, data dictionary, ERD, architecture notes).
+
+Students can map their own Major Project documentation (problem definition, design, implementation, testing, evaluation) against this reference.
+
+---
+
+## 3. Why Django (and not Flask) for this reference
+
+Both Flask and Django are valuable, but this reference architecture uses **Django** because:
+
+- **Batteries included:** Django provides an ORM, admin interface, authentication, forms, and security middleware out of the box.
+- **Relational focus:** The Major Project often involves **non‑trivial data models**. Django’s ORM and migrations make this explicit and teachable.
+- **Security defaults:** Django ships with strong defaults:
+  - CSRF protection,
+  - XSS and SQL injection protections via the template engine and ORM,
+  - secure password hashing and authentication framework.
+- **Scalability of ideas:** Students can start with a small app and grow to multiple apps, each with its own models and views, mirroring real‑world architectures.
+
+Flask remains excellent for lightweight PWAs and micro‑services; Django is chosen here to model a **full, multi‑entity, security‑aware system** suitable as a Major Project reference.
+
+---
+
+## 4. Project structure (Django + `pyproject.toml` + `uv`)
+
+This repository uses **`pyproject.toml`** and **`uv`** for modern, fast, and reproducible Python dependency management.
+
+A possible structure:
+
+```tree
+themepark-django-reference-architecture/
+│
+├── pyproject.toml              # Project metadata and dependencies (for uv)
+├── uv.lock                     # Resolved dependency lockfile (generated by uv)
+├── README.md
+├── .gitignore
+├── .github/
+│   └── workflows/
+│       ├── ci.yml              # Tests, linting, SAST hooks
+│       └── security-scan.yml   # Optional DAST/SAST integration
+│
+├── .devcontainer/              # GitHub Codespaces configuration
+│   ├── devcontainer.json
+│   └── Dockerfile              # If needed for custom tooling
+│
+├── themepark/                  # Django project package
+│   ├── __init__.py
+│   ├── settings.py             # Security-first settings (env vars, HTTPS, etc.)
+│   ├── urls.py
+│   ├── asgi.py
+│   └── wsgi.py
+│
+├── customers/                  # Django app: customers
+│   ├── models.py
+│   ├── views.py
+│   ├── urls.py
+│   ├── forms.py
+│   ├── admin.py
+│   └── tests.py
+│
+├── bookings/                   # Django app: bookings
+│   ├── models.py
+│   ├── views.py
+│   ├── urls.py
+│   ├── forms.py
+│   ├── admin.py
+│   └── tests.py
+│
+├── templates/                  # Shared templates (base.html, layout, etc.)
+│   ├── base.html
+│   └── ...
+│
+├── static/                     # CSS, JS, images
+│   ├── css/
+│   ├── js/
+│   └── img/
+│
+├── workbooks/                  # Jupyter notebooks for guided learning
+│   └── ThemePark_PWA_Workbook.ipynb
+│
+└── manage.py
